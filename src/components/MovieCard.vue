@@ -1,14 +1,15 @@
 <template>
   <div>
     {{ name }}
-    <!-- {{ movieNum }}
-    {{ createdDate }} -->
+    <!-- {{ info.created }} -->
+    <!-- <Details v-for="(i, index) in info.characters" :key="index" :url="i"/> -->
     <i class="fas fa-plus"></i>
   </div>
 </template>
 
 <script>
 import StarWarsApi from '../utils/StarWarsApi'
+import Details from './Details.vue'
 
 export default {
   name: "MovieCard",
@@ -22,11 +23,14 @@ export default {
     name: String,
     movieNum: Number
   },
+  components: {
+    Details
+  },
   created() {
     StarWarsApi.getFilm(this.movieNum.toString())
       .then((response) => {
         this.info = response.data;
-        this.createdDate = response.data.created
+        // console.log(this.info)
       })
       .catch((error) => {
         console.log(error);

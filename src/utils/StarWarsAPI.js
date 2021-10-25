@@ -23,5 +23,13 @@ export default {
     },
     getFilm(id) {
         return apiClient.get('films/' + id)
+    },
+    getCharacterNames(string) {
+        console.log('we got to getCharacterNames')
+        emptyString = ''
+        axios
+        .get(string)
+        .then(response => emptyString = response)
+        return emptyString
     }
 }
