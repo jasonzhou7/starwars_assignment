@@ -8,7 +8,7 @@
 <script>
 import MovieCard from './MovieCard.vue';
 import SearchBar from './SearchBar.vue';
-import StarWarsApi from '../utils/StarWarsApi';
+import StarWarsApi from '../utils/StarWarsApi'
 
 export default {
   name: 'StarWarsList',
@@ -25,7 +25,6 @@ export default {
     StarWarsApi.getFilms()
       .then((response) => {
         this.info = response.data.results;
-        console.log(this.info);
       })
       .catch((error) => {
         console.log(error);

@@ -14,7 +14,8 @@ export default {
   name: "MovieCard",
   data() {
       return {
-          createdDate: []
+        info: '',
+        createdDate: []
       }
   },
   props: {
@@ -25,8 +26,6 @@ export default {
     StarWarsApi.getFilm(this.movieNum.toString())
       .then((response) => {
         this.info = response.data;
-        console.log('film' + this.movieNum.toString())
-        console.log(this.info);
         this.createdDate = response.data.created
       })
       .catch((error) => {
