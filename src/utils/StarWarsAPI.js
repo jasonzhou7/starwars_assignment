@@ -1,10 +1,24 @@
-import axios from 'axios'
-import { BASE_URL } from './Constants'
+// import axios from 'axios';
+// import { FILM_URL } from './Constants';
 
-export default axios.create({
-    baseURL: BASE_URL,
-    timeout: 5000,
-    headers: {
-        'Content-Type': 'application/json'
-      }
+// export const getFilms = () => {
+//         axios.get(
+//     FILM_URL        
+//     ).then((response) => {
+//         console.log(response.data);
+//         return response.data;
+//     })
+// };
+
+import axios from 'axios';
+import { BASE_URL } from './Constants';
+
+const apiClient = axios.create({
+    baseURL: BASE_URL
 })
+
+export default {
+    getFilms() {
+    return apiClient.get('films')
+}
+}

@@ -1,34 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  {{ info }} 
-  <MovieList/>
+  <StarWarsList />
 </template>
 
 <script>
-import MovieList from './components/MovieList.vue'
-import axios from 'axios'
+import StarWarsList from "./components/StarWarsList.vue";
+import StarWarsApi from "./utils/StarWarsApi";
+// import {getFilms} from './utils/API'
 
 export default {
-  name: 'App',
-  data () {
-    return {
-      info: []
-    }
-  },
+  name: "App",
   components: {
-    MovieList
+    StarWarsList,
   },
-  mounted () {
-    axios
-    .get('https://swapi.dev/api/')
-    .then(response => {
-      this.info = response.data;
-      console.log(this.info)})
-    .catch(error => {
-      console.log(error)
-    })
-      }
-}
+};
+// mounted () {
+//   const test = async () => {
+//     await getFilms();
+//     console.log("after");
+//   }
+//   test();
+//     }
 </script>
 
 <style>
