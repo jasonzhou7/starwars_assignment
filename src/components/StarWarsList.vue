@@ -1,15 +1,17 @@
 <template>
+  <h1>STAR WARS MOVIE VIEWER</h1>
+  <SearchBar />
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  <!-- <MovieCard v-for="item in info" :key="item.id" :name="item"/> -->
-  <MovieCard :name="info.count" />
+  <MovieCard v-for="(item, index) in info" :key="item.id" :name="item.title" :movieNum="index + 1" />
 </template>
 
 <script>
-import MovieCard from "./MovieCard.vue";
-import StarWarsApi from "../utils/StarWarsApi";
+import MovieCard from './MovieCard.vue';
+import SearchBar from './SearchBar.vue';
+import StarWarsApi from '../utils/StarWarsApi';
 
 export default {
-  name: "StarWarsList",
+  name: 'StarWarsList',
   data() {
     return {
       info: [],
@@ -17,11 +19,12 @@ export default {
   },
   components: {
     MovieCard,
+    SearchBar,
   },
   created() {
     StarWarsApi.getFilms()
       .then((response) => {
-        this.info = response.data;
+        this.info = response.data.results;
         console.log(this.info);
       })
       .catch((error) => {
