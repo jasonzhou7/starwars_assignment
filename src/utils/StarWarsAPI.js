@@ -11,19 +11,21 @@
 // };
 
 import axios from 'axios';
-import { BASE_URL } from './Constants';
-
-let characters = []
+import { BASE_URL, PEOPLE_URL } from './Constants';
 
 const apiClient = axios.create({
     baseURL: BASE_URL
 })
 
-
+let startURL = PEOPLE_URL;
 
 export default {
     getFilms() {
-        return apiClient.get('films')
+        return apiClient
+        .get('films')
+        .then(response => {
+            return response.data
+        })
     },
     getFilm(id) {
         return apiClient.get('films/' + id)
@@ -36,21 +38,20 @@ export default {
         .then(response => emptyString = response)
         return emptyString
     },
-    getCharacters(){
-        console.log('getCharacters')
-        return apiClient
-        .get('people')
-        .then(response => {
-            characters = response.data;
-            console.log('inside api');
-            localStorage.setItem('characters', characters)
-            console.log('stored')
-            console.log(localStorage.getItem('characters'))
-            console.log('after storage')
-            return characters;
-        })
-        .catch(err => {
-            return err;
-        })
+    async getCharacters(){
+        let link = PEOPLE_URL;
+        let characters = [];
+
+        // const chars = await axios.get(link);
+        // console.log(chars.data);
+        
+        while (link) {
+            const chars = await axios.get(link);
+            link = chars.data.next
+            characters = characters.concat(chars.data.results)
+            
+        }
+        console.log(characters)
+        localStorage.setItem('characters', JSON.stringify(characters))
     }
 }

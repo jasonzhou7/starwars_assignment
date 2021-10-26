@@ -1,6 +1,7 @@
 <template>
   <div>
     {{ name }}
+    {{ info }}
     <!-- {{ info.created }} -->
     <!-- <Details v-for="(i, index) in info.characters" :key="index" :url="i"/> -->
     <i class="fas fa-plus"></i>
@@ -15,26 +16,19 @@ export default {
   name: "MovieCard",
   data() {
       return {
-        info: '',
-        createdDate: []
+        allCharacters: [],
+        info: JSON.parse(localStorage.getItem('characters'))
       }
   },
   props: {
     name: String,
-    movieNum: Number
+    movieNum: String,
+    characters: Array
   },
-  components: {
-    Details
-  },
-  created() {
-    // StarWarsApi.getFilm(this.movieNum.toString())
-    //   .then((response) => {
-    //     this.info = response.data;
-    //     // console.log(this.info)
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-  },
+  // computed() {
+  //   filteredListing: fucnction () {
+  //     return this.allCharacters.re
+  //   }
+  // }
 };
 </script>

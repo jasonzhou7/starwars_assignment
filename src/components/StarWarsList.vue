@@ -1,8 +1,13 @@
 <template>
   <h1>STAR WARS MOVIE VIEWER</h1>
+  {{ filmInfo }}
   <SearchBar />
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  <MovieCard v-for="(item, index) in info" :key="item.id" :name="item.title" :movieNum="index + 1" />
+  <MovieCard v-for="(item, index) in films.results" 
+  :key="item.id" 
+  :name="item.title" 
+  :characters="item.characters"
+  :movieNum="index" />
 </template>
 
 <script>
@@ -14,21 +19,15 @@ export default {
   name: 'StarWarsList',
   data() {
     return {
-      info: [],
+      films: [],
     };
   },
   components: {
     MovieCard,
     SearchBar,
   },
-  created() {
-    StarWarsApi.getFilms()
-      .then((response) => {
-        this.info = response.data.results;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  async created() {
+    this.films = await StarWarsApi.getFilms()
   },
 };
 </script>
