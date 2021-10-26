@@ -27,14 +27,14 @@ export default {
     Details
   },
   created() {
-    StarWarsApi.getFilm(this.movieNum.toString())
-      .then((response) => {
-        this.info = response.data;
-        // console.log(this.info)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // StarWarsApi.getFilm(this.movieNum.toString())
+    //   .then((response) => {
+    //     this.info = response.data;
+    //     // console.log(this.info)
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   },
 };
 </script>

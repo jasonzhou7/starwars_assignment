@@ -12,6 +12,12 @@ export default {
   components: {
     StarWarsList,
   },
+  async created() {
+    console.log('before api')
+    const characters = await StarWarsApi.getCharacters()
+    console.log('after api')
+    console.log(characters)
+  },
 };
 // mounted () {
 //   const test = async () => {

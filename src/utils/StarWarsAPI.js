@@ -13,9 +13,13 @@
 import axios from 'axios';
 import { BASE_URL } from './Constants';
 
+let characters = []
+
 const apiClient = axios.create({
     baseURL: BASE_URL
 })
+
+
 
 export default {
     getFilms() {
@@ -31,5 +35,22 @@ export default {
         .get(string)
         .then(response => emptyString = response)
         return emptyString
+    },
+    getCharacters(){
+        console.log('getCharacters')
+        return apiClient
+        .get('people')
+        .then(response => {
+            characters = response.data;
+            console.log('inside api');
+            localStorage.setItem('characters', characters)
+            console.log('stored')
+            console.log(localStorage.getItem('characters'))
+            console.log('after storage')
+            return characters;
+        })
+        .catch(err => {
+            return err;
+        })
     }
 }
