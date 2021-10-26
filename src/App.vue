@@ -15,6 +15,9 @@ export default {
   async created() {
     await StarWarsApi.getCharacters()
     await StarWarsApi.getPlanets()
+    await StarWarsApi.getSpecies()
+    await StarWarsApi.getVehicles()
+    await StarWarsApi.getStarships()
   }
 };  
 </script>
