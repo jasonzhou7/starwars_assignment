@@ -1,5 +1,7 @@
 <template>
   <StarWarsList />
+
+  {{ $root.authData ? $root.authData.name : null }}
 </template>
 
 <script>

@@ -1,37 +1,44 @@
 <template>
   <div>
     {{ name }}
-    <!-- {{ info }} -->
-    <div v-for="(names, index) in filteredListing" :key="index">
+
+    <div>
+      <h2>Characters</h2>
+      <div v-for="(names, index) in filteredCharacters" :key="index">
       {{names.name}}
+      </div>
     </div>
+
+
     <i class="fas fa-plus"></i>
   </div>
 </template>
 
 <script>
-import StarWarsApi from '../utils/StarWarsApi'
-import Details from './Details.vue'
-
 export default {
   name: "MovieCard",
   data() {
       return {
         matchingResults: [],
-        info: []
+        filmCharacters: []
       }
   },
   props: {
     name: String,
     movieNum: String,
-    characters: Array
-  },
-  created () {
-    this.info = JSON.parse(localStorage.getItem('characters'))
+    characters: Array,
+    planets: Array,
+    starships: Array,
+    vehicles: Array,
+    species: Array,
+    },
+  async mounted () {
+    console.log('we are here')
+    this.filmCharacters = await JSON.parse(localStorage.getItem('characters'))
   },
   computed: {
-    filteredListing: function() {
-      return this.info
+    filteredCharacters: function() {
+      return this.filmCharacters
       .filter((listing) => {
         return (this.characters.includes(listing.url))
       })

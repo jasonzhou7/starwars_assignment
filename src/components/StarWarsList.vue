@@ -3,11 +3,14 @@
   {{ filmInfo }}
   <SearchBar />
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  <MovieCard v-for="(item, index) in films.results" 
+  <MovieCard v-for="item in films.results" 
   :key="item.id" 
   :name="item.title" 
   :characters="item.characters"
-  :movieNum="index" />
+  :planets="item.planets"
+  :starships="item.starships"
+  :vehicles="item.vehicles"
+  :species="item.species"/>
 </template>
 
 <script>
@@ -26,7 +29,7 @@ export default {
     MovieCard,
     SearchBar,
   },
-  async created() {
+  async mounted() {
     this.films = await StarWarsApi.getFilms()
   },
 };
