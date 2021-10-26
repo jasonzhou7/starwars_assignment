@@ -11,7 +11,7 @@
 // };
 
 import axios from 'axios';
-import { BASE_URL, PEOPLE_URL } from './Constants';
+import { BASE_URL, PEOPLE_URL, PLANET_URL } from './Constants';
 
 const apiClient = axios.create({
     baseURL: BASE_URL
@@ -30,21 +30,18 @@ export default {
     getFilm(id) {
         return apiClient.get('films/' + id)
     },
-    getCharacterNames(string) {
-        console.log('we got to getCharacterNames')
-        emptyString = ''
-        axios
-        .get(string)
-        .then(response => emptyString = response)
-        return emptyString
-    },
+    // getCharacterNames(string) {
+    //     console.log('we got to getCharacterNames')
+    //     emptyString = ''
+    //     axios
+    //     .get(string)
+    //     .then(response => emptyString = response)
+    //     return emptyString
+    // },
     async getCharacters(){
         let link = PEOPLE_URL;
         let characters = [];
 
-        // const chars = await axios.get(link);
-        // console.log(chars.data);
-        
         while (link) {
             const chars = await axios.get(link);
             link = chars.data.next
@@ -53,5 +50,18 @@ export default {
         }
         console.log(characters)
         localStorage.setItem('characters', JSON.stringify(characters))
-    }
+    },
+    async getPlanets(){
+        let link = PLANET_URL;
+        let planets = [];
+
+        while (link) {
+            const chars = await axios.get(link);
+            link = chars.data.next
+            planets = planets.concat(chars.data.results)
+            
+        }
+        console.log(planets)
+        localStorage.setItem('planets', JSON.stringify(planets))
+    },
 }

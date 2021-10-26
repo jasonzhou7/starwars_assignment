@@ -1,9 +1,10 @@
 <template>
   <div>
     {{ name }}
-    {{ info }}
-    <!-- {{ info.created }} -->
-    <!-- <Details v-for="(i, index) in info.characters" :key="index" :url="i"/> -->
+    <!-- {{ info }} -->
+    <div v-for="(names, index) in filteredListing" :key="index">
+      {{names.name}}
+    </div>
     <i class="fas fa-plus"></i>
   </div>
 </template>
@@ -16,8 +17,8 @@ export default {
   name: "MovieCard",
   data() {
       return {
-        allCharacters: [],
-        info: JSON.parse(localStorage.getItem('characters'))
+        matchingResults: [],
+        info: []
       }
   },
   props: {
@@ -25,10 +26,16 @@ export default {
     movieNum: String,
     characters: Array
   },
-  // computed() {
-  //   filteredListing: fucnction () {
-  //     return this.allCharacters.re
-  //   }
-  // }
+  created () {
+    this.info = JSON.parse(localStorage.getItem('characters'))
+  },
+  computed: {
+    filteredListing: function() {
+      return this.info
+      .filter((listing) => {
+        return (this.characters.includes(listing.url))
+      })
+    }
+  }
 };
 </script>

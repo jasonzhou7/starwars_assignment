@@ -1,4 +1,7 @@
 export const BASE_URL = 'https://swapi.dev/api/'
 export const FILM_URL = BASE_URL + 'films/'
 export const PEOPLE_URL = BASE_URL + 'people/'
-
+export const PLANET_URL = BASE_URL + 'planets/'
+export const STARSHIP_URL = BASE_URL + 'starships/'
+export const VEHICLE_URL = BASE_URL + 'vehicles/'
+export const SPECIES_URL = BASE_URL + 'species/'

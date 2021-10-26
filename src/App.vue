@@ -14,6 +14,7 @@ export default {
   },
   async created() {
     await StarWarsApi.getCharacters()
+    await StarWarsApi.getPlanets()
   }
 };  
 </script>
