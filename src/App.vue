@@ -1,25 +1,33 @@
 <template>
+<!-- <StarWarsList/> -->
+<div v-if="state">
   <StarWarsList />
-
-  {{ $root.authData ? $root.authData.name : null }}
+</div>
 </template>
 
 <script>
 import StarWarsList from "./components/StarWarsList.vue";
 import StarWarsApi from "./utils/StarWarsApi";
-// import {getFilms} from './utils/API'
 
 export default {
   name: "App",
   components: {
     StarWarsList,
   },
+  data() {
+      return {
+        state: false,
+      }
+  },
   async created() {
+    console.log(this.state)
     await StarWarsApi.getCharacters()
     await StarWarsApi.getPlanets()
     await StarWarsApi.getSpecies()
     await StarWarsApi.getVehicles()
-    await StarWarsApi.getStarships()
+    await StarWarsApi.getStarships() 
+    this.state = true
+    console.log(this.state)
   }
 };  
 </script>
