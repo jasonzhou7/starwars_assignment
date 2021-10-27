@@ -1,15 +1,3 @@
-// import axios from 'axios';
-// import { FILM_URL } from './Constants';
-
-// export const getFilms = () => {
-//         axios.get(
-//     FILM_URL        
-//     ).then((response) => {
-//         console.log(response.data);
-//         return response.data;
-//     })
-// };
-
 import axios from 'axios';
 import { BASE_URL, PEOPLE_URL, PLANET_URL, SPECIES_URL, VEHICLE_URL, STARSHIP_URL } from './Constants';
 
@@ -30,14 +18,6 @@ export default {
     getFilm(id) {
         return apiClient.get('films/' + id)
     },
-    // getCharacterNames(string) {
-    //     console.log('we got to getCharacterNames')
-    //     emptyString = ''
-    //     axios
-    //     .get(string)
-    //     .then(response => emptyString = response)
-    //     return emptyString
-    // },
     async getCharacters() {
         let link = PEOPLE_URL;
         let characters = [];

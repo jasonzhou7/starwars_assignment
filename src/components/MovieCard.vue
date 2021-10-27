@@ -9,7 +9,7 @@
             CHARACTERS
             <div v-for="(characters, index) in filteredCharacters" :key="index">
               {{characters.name}}
-                        </div>
+              </div>
             </div>
             <div>
               PLANETS
@@ -17,7 +17,6 @@
                 {{planets.name}}
               </div>
             </div>
-
         </div>
       </div>
   </div>
@@ -55,14 +54,14 @@ export default {
   },
   computed: {
     filteredCharacters: function () {
-      return this.filmCharacters.filter((listing) => {
-        return this.characters.includes(listing.url);
-      });
+      return this.filmCharacters.filter((listing) => 
+        this.characters.includes(listing.url)
+      );
     },
     filteredPlanets: function () {
-      return this.filmPlanets.filter((listing) => {
-        return this.planets.includes(listing.url);
-      });
+      return this.filmPlanets.filter((listing) => 
+        this.planets.includes(listing.url)
+      );
     },
   },
   methods: {
