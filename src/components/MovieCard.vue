@@ -3,16 +3,28 @@
   {{ name }}
 </button>
 
-<!-- Modal -->
 <div class="modal fade" :id="'demo' + indexNum" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
-
-        <ul>
+ <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-people-tab" data-bs-toggle="tab" data-bs-target="#nav-people" type="button" role="tab" aria-controls="nav-people" aria-selected="true">People</button>
+    <button class="nav-link" id="nav-planets-tab" data-bs-toggle="tab" data-bs-target="#nav-planets" type="button" role="tab" aria-controls="nav-planets" aria-selected="false">Planets</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-people" role="tabpanel" aria-labelledby="nav-people-tab">
+    <ul>
           <h2>Characters</h2>
         <li v-for="(characters, index) in allCharacters" :key="index">{{characters.name}}</li>
         </ul>
+  </div>
+  <div class="tab-pane fade" id="nav-planets" role="tabpanel" aria-labelledby="nav-planets-tab">
+    <h2>Planets</h2>
+  </div>
+</div>
+        
     </div>
   </div>
 </div>
@@ -92,27 +104,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.collapsible-wrapper {
-  align-items:right;
-  width: 50%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 1px 1px 25px #555;
-}
-
-.collapsible-item-header {
-  cursor: pointer;
-  padding: 20px;
-  background: #07173a;
-  color: yellow;
-  border-bottom: 1px solid yellow;
-}
-
-.collapsible-item-body {
-  padding: 30px;
-  background: #e91338;
-  color: beige;
-}
-</style>
