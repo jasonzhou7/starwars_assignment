@@ -3,14 +3,15 @@
   <h1>STAR WARS MOVIE VIEWER</h1>
   <!-- <SearchBar /> -->
   <br>
-  <MovieCard v-for="item in films.results" 
-  :key="item.id" 
-  :name="item.title" 
-  :characters="item.characters"
-  :planets="item.planets"
-  :starships="item.starships"
-  :vehicles="item.vehicles"
-  :species="item.species"/>
+  <MovieCard v-for="(film, index) in films.results" 
+  :key="film.id" 
+  :indexNum="index"
+  :name="film.title" 
+  :characters="film.characters"
+  :planets="film.planets"
+  :starships="film.starships"
+  :vehicles="film.vehicles"
+  :species="film.species"/>
   </div>
 </template>
 

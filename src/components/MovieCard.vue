@@ -1,5 +1,31 @@
 <template>
-  <div class="collapsible-wrapper">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#demo' + indexNum">
+  {{ name }}
+  :data-bs-target="`#modal-` + name"
+  :id="`modal-` + name"
+  
+</button>
+
+<!-- Modal -->
+<div class="modal fade" :id="'demo' + indexNum" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- <div class="modal-header"> -->
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      <!-- </div> -->
+      <div v-for="(characters, index) in allCharacters" :key="index" class="modal-body">
+        {{ characters.name}}
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+  <!-- <div class="collapsible-wrapper">
     <div class="collapsible-item">
       <div @click="activateBody()" class="collapsible-item-header">
         {{ name }}
@@ -19,7 +45,7 @@
             </div>
         </div>
       </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -28,31 +54,33 @@ export default {
   data() {
     return {
       activate: false,
-      filmCharacters: [],
-      filmPlanets: [],
-      filmStarships: [],
-      filmVehicles: [],
-      filmSpecies: []
+      allCharacters: [],
+      // filmPlanets: [],
+      // filmStarships: [],
+      // filmVehicles: [],
+      // filmSpecies: [],
+      // filteredCharacters: []
     };
   },
   props: {
     name: String,
+    indexNum: Number,
     movieNum: String,
     characters: Array,
     planets: Array,
     starships: Array,
     vehicles: Array,
     species: Array,
+    modalId: String,
   },
-  mounted() {
-    console.log("we are here");
-    this.filmCharacters =  JSON.parse(localStorage.getItem("characters"));
-    this.filmPlanets =  JSON.parse(localStorage.getItem("planets"));
-    this.filmStarships =  JSON.parse(localStorage.getItem("starships"));
-    this.filmVehicles =  JSON.parse(localStorage.getItem("vehicles"));
-    this.filmSpecies =  JSON.parse(localStorage.getItem("species"));
+  async mounted() {
+    this.allCharacters =  await JSON.parse(localStorage.getItem("characters"));
+    this.allCharacters = this.allCharacters.filter((char) => this.characters.includes(char.url))
 
-    this.filmCharacters = this.filmCharacters.filter((listing) => this.characters.includes(listing.url))
+    // this.filmPlanets =  await JSON.parse(localStorage.getItem("planets"));
+    // this.filmStarships =  await JSON.parse(localStorage.getItem("starships"));
+    // this.filmVehicles =  await JSON.parse(localStorage.getItem("vehicles"));
+    // this.filmSpecies =  await JSON.parse(localStorage.getItem("species"));
   },
   // computed: {
   //   filteredCharacters: function () {
