@@ -1,8 +1,8 @@
 <template>
-<StarWarsList/>
-<!-- <div v-if="state">
+  <h1>STAR WARS MOVIE VIEWER</h1>
+<div v-if="state">
   <StarWarsList />
-</div> -->
+</div>
 </template>
 
 <script>
@@ -20,8 +20,8 @@ export default {
       }
   },
   async created() {
-    console.log(this.state)
     const listOfPromises = [];
+    listOfPromises.push( StarWarsApi.getFilms());
     listOfPromises.push( StarWarsApi.getCharacters());
     listOfPromises.push( StarWarsApi.getPlanets());
     listOfPromises.push( StarWarsApi.getSpecies());
@@ -29,7 +29,6 @@ export default {
     listOfPromises.push( StarWarsApi.getStarships()); 
     await Promise.all(listOfPromises);
     this.state = true
-    console.log(this.state)
   }
 };  
 </script>

@@ -1,6 +1,5 @@
 <template>
 <div class="main-page">
-  <h1>STAR WARS MOVIE VIEWER</h1>
   <!-- <SearchBar /> -->
   <br>
   <MovieCard v-for="(film, index) in films.results" 
@@ -18,13 +17,13 @@
 <script>
 import MovieCard from './MovieCard.vue';
 import SearchBar from './SearchBar.vue';
-import StarWarsApi from '../utils/StarWarsApi'
 
 export default {
   name: 'StarWarsList',
   data() {
     return {
       films: [],
+      allCharacters: []
     };
   },
   components: {
@@ -32,7 +31,7 @@ export default {
     SearchBar,
   },
   async mounted() {
-    this.films = await StarWarsApi.getFilms()
+    this.films = JSON.parse(localStorage.getItem('films'));
   },
 };
 </script>
@@ -48,6 +47,7 @@ h1 {
 }
 
 .main-page{
+  text-align: left;
   display:flex;
   flex-direction: column;
   justify-content: center;

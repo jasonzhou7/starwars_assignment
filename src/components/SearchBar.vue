@@ -1,9 +1,9 @@
 <template>
-    <input>
+  <input />
 </template>
 
 <script>
 export default {
-    name: 'SearchBar'
-}
+  name: "SearchBar",
+};
 </script>

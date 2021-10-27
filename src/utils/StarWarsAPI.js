@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL, PEOPLE_URL, PLANET_URL, SPECIES_URL, VEHICLE_URL, STARSHIP_URL } from './Constants';
+import { BASE_URL, FILM_URL, PEOPLE_URL, PLANET_URL, SPECIES_URL, VEHICLE_URL, STARSHIP_URL } from './Constants';
 
 const apiClient = axios.create({
     baseURL: BASE_URL
@@ -9,10 +9,11 @@ let startURL = PEOPLE_URL;
 
 export default {
     getFilms() {
-        return apiClient
-        .get('films')
+        axios
+        .get(FILM_URL)
         .then(response => {
-            return response.data
+            localStorage.setItem('films', JSON.stringify(response.data))
+            console.log(response.data)
         })
     },
     async getCharacters() {

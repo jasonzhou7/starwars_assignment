@@ -9,19 +9,23 @@
 
  <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="nav-people-tab" data-bs-toggle="tab" data-bs-target="#nav-people" type="button" role="tab" aria-controls="nav-people" aria-selected="true">People</button>
-    <button class="nav-link" id="nav-planets-tab" data-bs-toggle="tab" data-bs-target="#nav-planets" type="button" role="tab" aria-controls="nav-planets" aria-selected="false">Planets</button>
+    <button class="nav-link active" id="nav-people-tab" data-bs-toggle="tab" :data-bs-target="'#nav-people' + indexNum" type="button" role="tab" aria-controls="nav-people" aria-selected="true">People</button>
+    <button class="nav-link" id="nav-planets-tab" data-bs-toggle="tab" :data-bs-target="'#nav-planets' + indexNum" type="button" role="tab" aria-controls="nav-planets" aria-selected="false">Planets</button>
   </div>
 </nav>
+
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-people" role="tabpanel" aria-labelledby="nav-people-tab">
+  <div class="tab-pane fade show active" :id="'nav-people' + indexNum" role="tabpanel" aria-labelledby="nav-people-tab">
     <ul>
-          <h2>Characters</h2>
+      <h2>Characters</h2>
         <li v-for="(characters, index) in allCharacters" :key="index">{{characters.name}}</li>
         </ul>
   </div>
-  <div class="tab-pane fade" id="nav-planets" role="tabpanel" aria-labelledby="nav-planets-tab">
-    <h2>Planets</h2>
+  <div class="tab-pane fade" :id="'nav-planets' + indexNum" role="tabpanel" aria-labelledby="nav-planets-tab">
+<ul>
+          <h2>Planets</h2>
+        <li v-for="(planets, index) in allPlanets" :key="index">{{planets.name}}</li>
+        </ul>
   </div>
 </div>
         
@@ -58,7 +62,7 @@ export default {
     return {
       activate: false,
       allCharacters: [],
-      // filmPlanets: [],
+      allPlanets: [],
       // filmStarships: [],
       // filmVehicles: [],
       // filmSpecies: [],
@@ -74,11 +78,13 @@ export default {
     starships: Array,
     vehicles: Array,
     species: Array,
-    modalId: String,
   },
-  async mounted() {
-    this.allCharacters =  await JSON.parse(localStorage.getItem("characters"));
+  mounted() {
+    this.allCharacters =  JSON.parse(localStorage.getItem("characters"));
     this.allCharacters = this.allCharacters.filter((char) => this.characters.includes(char.url))
+
+    this.allPlanets = JSON.parse(localStorage.getItem("planets"));
+    this.allPlanets = this.allPlanets.filter((planet) => this.planets.includes(planet.url))
 
     // this.filmPlanets =  await JSON.parse(localStorage.getItem("planets"));
     // this.filmStarships =  await JSON.parse(localStorage.getItem("starships"));
@@ -97,10 +103,5 @@ export default {
   //     );
   //   },
   // },
-  methods: {
-    activateBody(){
-      this.activate = !this.activate
-    }
-  }
 };
 </script>
