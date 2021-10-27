@@ -46,6 +46,10 @@ h1 {
   color: yellow;
 }
 
+button {
+  color: yellow;
+}
+
 .main-page{
   text-align: left;
   display:flex;
