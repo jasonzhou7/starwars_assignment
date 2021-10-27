@@ -3,19 +3,19 @@
   <div v-if="state">
     <StarWarsList />
   </div>
-  <Spinner v-if="!state"/>
+  <Loading v-if="!state"/>
 </template>
 
 <script>
 import StarWarsList from "./components/StarWarsList.vue";
-import Spinner from "./components/Spinner.vue"
+import Loading from "./components/Loading.vue"
 import StarWarsApi from "./utils/StarWarsApi";
 
 export default {
   name: "App",
   components: {
     StarWarsList,
-    Spinner
+    Loading
   },
   data() {
     return {
