@@ -7,7 +7,7 @@
         <div v-if="activate" class="collapsible-item-body">
           <div>
             CHARACTERS
-            <div v-for="(characters, index) in filteredCharacters" :key="index">
+            <div v-for="(characters, index) in filmCharacters" :key="index">
               {{characters.name}}
               </div>
             </div>
@@ -44,26 +44,28 @@ export default {
     vehicles: Array,
     species: Array,
   },
-  async mounted() {
+  mounted() {
     console.log("we are here");
-    this.filmCharacters = await JSON.parse(localStorage.getItem("characters"));
-    this.filmPlanets = await JSON.parse(localStorage.getItem("planets"));
-    this.filmStarships = await JSON.parse(localStorage.getItem("starships"));
-    this.filmVehicles = await JSON.parse(localStorage.getItem("vehicles"));
-    this.filmSpecies = await JSON.parse(localStorage.getItem("species"));
+    this.filmCharacters =  JSON.parse(localStorage.getItem("characters"));
+    this.filmPlanets =  JSON.parse(localStorage.getItem("planets"));
+    this.filmStarships =  JSON.parse(localStorage.getItem("starships"));
+    this.filmVehicles =  JSON.parse(localStorage.getItem("vehicles"));
+    this.filmSpecies =  JSON.parse(localStorage.getItem("species"));
+
+    this.filmCharacters = this.filmCharacters.filter((listing) => this.characters.includes(listing.url))
   },
-  computed: {
-    filteredCharacters: function () {
-      return this.filmCharacters.filter((listing) => 
-        this.characters.includes(listing.url)
-      );
-    },
-    filteredPlanets: function () {
-      return this.filmPlanets.filter((listing) => 
-        this.planets.includes(listing.url)
-      );
-    },
-  },
+  // computed: {
+  //   filteredCharacters: function () {
+  //     return this.filmCharacters.filter((listing) => 
+  //       this.characters.includes(listing.url)
+  //     );
+  //   },
+  //   filteredPlanets: function () {
+  //     return this.filmPlanets.filter((listing) => 
+  //       this.planets.includes(listing.url)
+  //     );
+  //   },
+  // },
   methods: {
     activateBody(){
       this.activate = !this.activate

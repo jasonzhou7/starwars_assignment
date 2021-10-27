@@ -1,7 +1,7 @@
 <template>
 <div class="main-page">
   <h1>STAR WARS MOVIE VIEWER</h1>
-  <SearchBar />
+  <!-- <SearchBar /> -->
   <br>
   <MovieCard v-for="item in films.results" 
   :key="item.id" 
@@ -31,11 +31,6 @@ export default {
     SearchBar,
   },
   async mounted() {
-    // await StarWarsApi.getCharacters()
-    // await StarWarsApi.getPlanets()
-    // await StarWarsApi.getSpecies()
-    // await StarWarsApi.getVehicles()
-    // await StarWarsApi.getStarships() 
     this.films = await StarWarsApi.getFilms()
   },
 };

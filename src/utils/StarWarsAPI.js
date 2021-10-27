@@ -15,9 +15,6 @@ export default {
             return response.data
         })
     },
-    getFilm(id) {
-        return apiClient.get('films/' + id)
-    },
     async getCharacters() {
         let link = PEOPLE_URL;
         let characters = [];
@@ -26,9 +23,8 @@ export default {
             const chars = await axios.get(link);
             link = chars.data.next
             characters = characters.concat(chars.data.results)
-            
         }
-        console.log(characters)
+        console.log(1)
         localStorage.setItem('characters', JSON.stringify(characters))
     },
     async getPlanets() {
@@ -41,7 +37,7 @@ export default {
             planets = planets.concat(chars.data.results)
             
         }
-        console.log(planets)
+        console.log(2)
         localStorage.setItem('planets', JSON.stringify(planets))
     },
     async getSpecies() {
@@ -54,7 +50,7 @@ export default {
             species = species.concat(chars.data.results)
             
         }
-        console.log(species)
+        console.log(3)
         localStorage.setItem('species', JSON.stringify(species))
     },
     async getVehicles() {
@@ -67,7 +63,7 @@ export default {
             vehicles = vehicles.concat(chars.data.results)
             
         }
-        console.log(vehicles)
+        console.log(4)
         localStorage.setItem('vehicles', JSON.stringify(vehicles))
     },
     async getStarships() {
@@ -80,7 +76,7 @@ export default {
             starships = starships.concat(chars.data.results)
             
         }
-        console.log(starships)
+        console.log(5)
         localStorage.setItem('starships', JSON.stringify(starships))
     }
 }

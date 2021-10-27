@@ -1,8 +1,8 @@
 <template>
-<!-- <StarWarsList/> -->
-<div v-if="state">
+<StarWarsList/>
+<!-- <div v-if="state">
   <StarWarsList />
-</div>
+</div> -->
 </template>
 
 <script>
@@ -21,11 +21,13 @@ export default {
   },
   async created() {
     console.log(this.state)
-    await StarWarsApi.getCharacters()
-    await StarWarsApi.getPlanets()
-    await StarWarsApi.getSpecies()
-    await StarWarsApi.getVehicles()
-    await StarWarsApi.getStarships() 
+    const listOfPromises = [];
+    listOfPromises.push( StarWarsApi.getCharacters());
+    listOfPromises.push( StarWarsApi.getPlanets());
+    listOfPromises.push( StarWarsApi.getSpecies());
+    listOfPromises.push( StarWarsApi.getVehicles());
+    listOfPromises.push( StarWarsApi.getStarships()); 
+    await Promise.all(listOfPromises);
     this.state = true
     console.log(this.state)
   }
