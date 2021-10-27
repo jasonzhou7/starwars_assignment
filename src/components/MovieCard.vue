@@ -151,7 +151,6 @@
               </li>
             </ul>
           </div>
-
         </div>
       </div>
     </div>
@@ -163,7 +162,6 @@ export default {
   name: "MovieCard",
   data() {
     return {
-      activate: false,
       allCharacters: [],
       allPlanets: [],
       allStarships: [],
@@ -174,14 +172,13 @@ export default {
   props: {
     name: String,
     indexNum: Number,
-    movieNum: String,
     characters: Array,
     planets: Array,
     starships: Array,
     vehicles: Array,
     species: Array,
   },
-  mounted() {
+  created() {
     this.allCharacters = JSON.parse(localStorage.getItem("characters"));
     this.allCharacters = this.allCharacters.filter((char) =>
       this.characters.includes(char.url)
@@ -207,17 +204,5 @@ export default {
       this.species.includes(species.url)
     );
   },
-  // computed: {
-  //   filteredCharacters: function () {
-  //     return this.filmCharacters.filter((listing) =>
-  //       this.characters.includes(listing.url)
-  //     );
-  //   },
-  //   filteredPlanets: function () {
-  //     return this.filmPlanets.filter((listing) =>
-  //       this.planets.includes(listing.url)
-  //     );
-  //   },
-  // },
 };
 </script>

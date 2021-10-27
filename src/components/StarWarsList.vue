@@ -17,7 +17,6 @@
 
 <script>
 import MovieCard from "./MovieCard.vue";
-import SearchBar from "./SearchBar.vue";
 
 export default {
   name: "StarWarsList",
@@ -30,15 +29,8 @@ export default {
   },
   components: {
     MovieCard,
-    SearchBar,
   },
-  methods: {
-    searchFilter(word) {
-      this.searchedWord = word;
-      console.log(this.searchedWord);
-    },
-  },
-  async mounted() {
+  async created() {
     this.films = JSON.parse(localStorage.getItem("films"));
   },
 };
