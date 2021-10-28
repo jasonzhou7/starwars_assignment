@@ -39,7 +39,6 @@ export default {
 <style>
 body {
   background: black;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 h1 {
@@ -50,6 +49,9 @@ button {
   color: yellow;
 }
 
+#titleButton {
+  width: 80%
+}
 .main-page {
   text-align: left;
   display: flex;
