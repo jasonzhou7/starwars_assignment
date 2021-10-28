@@ -9,7 +9,7 @@
 <script>
 import StarWarsList from "./components/StarWarsList.vue";
 import Loading from "./components/Loading.vue"
-import StarWarsApi from "./utils/StarWarsApi";
+import StarWarsApi from "./utils/StarWarsApi.js";
 
 export default {
   name: "App",
